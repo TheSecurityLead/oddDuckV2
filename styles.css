@@ -42,3 +42,26 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Chart container styling for responsiveness */
+#results-chart-container {
+  width: 100%;
+  max-width: 600px; /* Adjust max-width as necessary for your design */
+  margin: 2rem auto; /* Centers the chart and provides space above and below */
+}
+
+/* Chart canvas styling */
+#results-chart {
+  display: block; /* Canvas is an inline element by default, block will allow it to take width properly */
+  max-width: 100%; /* Ensures that the chart is responsive and fits within its container */
+  height: auto; /* Maintain aspect ratio */
+  background-color: #ffffff; /* Optional: sets background color of the chart area */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for some depth */
+  border-radius: 8px; /* Optional: rounds the corners of the canvas element */
+}
+
+@media screen and (max-width: 768px) { /* Adjusts the chart size for smaller screens */
+  #results-chart-container {
+    max-width: 100%;
+  }
+}
