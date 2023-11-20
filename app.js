@@ -70,6 +70,7 @@ function handleProductClick(event) {
       displayProducts();
     }
   }
+   localStorage.setItem('products', JSON.stringify(Product.allProducts));
 }
 
 // Function to display chart after voting is complete
@@ -154,7 +155,17 @@ function createProducts() {
 
 // Initial setup
 function setup() {
-  createProducts();
+  if (localStorage.getItem('products')) {
+    const storedProducts = JSON.parse(localStorage.getItem('products'));
+    Product.allProducts = storedProducts.map(prodData => {
+      let prod = new Product(prodData.name, prodData.filePath);
+      prod.timesShown = prodData.timesShown;
+      prod.timesClicked = prodData.timesClicked;
+      return prod;
+    });
+  } else {
+    createProducts();
+  }
   displayProducts();
   // Attach event listener to the parent section instead of individual images
   let productSection = document.getElementById('product-section');
