@@ -10,12 +10,17 @@ function Product(name, filePath) {
 
 // Array to store all product instances
 Product.allProducts = [];
+Product.lastShown = [];
 Product.totalClicks = 0;
-Product.rounds = 25; // Total rounds of voting
+Product.rounds = 25;
 
 // Helper function to generate a random index
-function getRandomIndex() {
-  return Math.floor(Math.random() * Product.allProducts.length);
+function getRandomProduct() {
+  let index = Math.floor(Math.random() * Product.allProducts.length);
+  while (Product.lastShown.includes(index)) {
+    index = Math.floor(Math.random() * Product.allProducts.length);
+  }
+  return index;
 }
 
 // Function to display three unique products
