@@ -142,5 +142,16 @@ function setup() {
   });
 }
 
+function displayResults() {
+  let resultsList = document.getElementById('results-list');
+  resultsList.innerHTML = ''; // Clear existing results
+
+  for (let product of Product.allProducts) {
+    let listItem = document.createElement('li');
+    listItem.textContent = `${product.name} had ${product.timesClicked} votes and was seen ${product.timesShown} times.`;
+    resultsList.appendChild(listItem);
+  }
+}
+
 // Call setup to initialize the app
 window.addEventListener('load', setup);
