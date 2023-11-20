@@ -27,7 +27,7 @@ function getRandomProduct() {
 function displayProducts() {
   let indices = [];
   while(indices.length < 3) {
-    let randomIndex = getRandomIndex();
+    let randomIndex = getRandomProduct(); 
     if(!indices.includes(randomIndex)) {
       indices.push(randomIndex);
     }
