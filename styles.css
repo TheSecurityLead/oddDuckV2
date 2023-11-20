@@ -18,7 +18,9 @@ header {
 #product-section img {
   max-width: 100%; 
   height: auto; 
-  display: block; 
+  object-fit: contain; /* This ensures that the aspect ratio is maintained */
+  display: block;
+  margin: 0 auto; /* This centers the images if they are smaller than the container */
 }
 
 #results-list {
