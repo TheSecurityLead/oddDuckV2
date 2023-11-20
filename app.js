@@ -88,7 +88,7 @@ function displayResults() {
 function createProducts() {
   let productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum',
   'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep',
-  'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass']; // Add all the product names here
+  'tauntaun', 'unicorn', 'water-can', 'wine-glass']; // Add all the product names here
   for (let name of productNames) {
     let filePath = `img/${name}.jpg`; // Adjust if your file path or extensions are different
     Product.allProducts.push(new Product(name, filePath));
