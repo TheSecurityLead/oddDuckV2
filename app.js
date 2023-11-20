@@ -74,39 +74,63 @@ function handleProductClick(event) {
 
 // Function to display chart after voting is complete
 function displayChart() {
-  let ctx = document.getElementById('results-chart').getContext('2d');
-  let productNames = Product.allProducts.map(p => p.name);
-  let votes = Product.allProducts.map(p => p.timesClicked);
-  let views = Product.allProducts.map(p => p.timesShown);
+  console.log('displayChart function called'); // Log when function is called
+  
+  // Check if the canvas element exists
+  let canvas = document.getElementById('results-chart');
+  if (!canvas) {
+    console.error('Canvas element not found!');
+    return;
+  }
+  
+  // Log the canvas dimensions
+  console.log('Canvas width:', canvas.width, 'Canvas height:', canvas.height);
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: productNames,
-      datasets: [{
-        label: 'Votes',
-        data: votes,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1
-      }, {
-        label: 'Views',
-        data: views,
-        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-        borderColor: 'rgba(255, 206, 86, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+  let ctx = canvas.getContext('2d');
+  
+  // Log the product data being used for the chart
+  let productNames = Product.allProducts.map(p => p.name);
+  console.log('Product names:', productNames);
+  
+  let votes = Product.allProducts.map(p => p.timesClicked);
+  console.log('Product votes:', votes);
+  
+  let views = Product.allProducts.map(p => p.timesShown);
+  console.log('Product views:', views);
+
+  // Attempt to create the chart
+  try {
+    let chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: productNames,
+        datasets: [{
+          label: 'Votes',
+          data: votes,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }, {
+          label: 'Views',
+          data: views,
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgba(255, 206, 86, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
-    }
-  });
+    });
+    console.log('Chart created:', chart);
+  } catch (error) {
+    console.error('Error creating chart:', error);
+  }
 }
-
 // Modified showResultsButton function to include chart display
 function showResultsButton() {
   let button = document.createElement('button');
