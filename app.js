@@ -92,7 +92,14 @@ function createProducts() {
 function setup() {
   createProducts();
   displayProducts();
-  document.getElementById('product-section').addEventListener('click', handleProductClick);
+  // Attach event listener to the parent section instead of individual images
+  let productSection = document.getElementById('product-section');
+  productSection.addEventListener('click', function(event) {
+    // Check if the click is on an image
+    if (event.target.tagName === 'IMG') {
+      handleProductClick(event);
+    }
+  });
 }
 
 // Call setup to initialize the app
